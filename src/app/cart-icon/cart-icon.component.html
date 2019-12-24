@@ -1,0 +1,14 @@
+
+<div class="cart" >
+    <a [routerLink]="['/panier']" *ngIf="refreshTotal(); else empycart"  >
+<i class="fas fa-shopping-cart fa-2x"></i>
+ <span>{{refreshTotal()}}</span>
+</a>
+</div>
+<ng-template #empycart>
+    <div class="cart" >
+        <i class="fas fa-shopping-cart fa-2x"></i>
+    </div>
+  </ng-template>
+
+

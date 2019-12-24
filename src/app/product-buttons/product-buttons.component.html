@@ -1,0 +1,11 @@
+<p class="buttons">
+    <button class="btn btn-default btn1" (click)="removeProduct()" *ngIf="numProducts > 0">
+      <i class="far fa-minus-square"></i>
+    </button>
+    <span class="number" [class.offset]="numProducts === 0">
+      {{ numProducts }}
+    </span>
+    <button class="btn btn-default btn2" (click)="addProduct()">
+      <i class="far fa-plus-square"></i>
+    </button>
+  </p>

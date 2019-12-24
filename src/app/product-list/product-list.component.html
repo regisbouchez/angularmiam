@@ -1,0 +1,61 @@
+
+
+
+<p-dataView #dv [value]="productList" filterBy="name" layout="grid">
+  <p-header>
+      <input type="search" pInputText placeholder="Search by name" (input)="dv.filter($event.target.value)">
+  </p-header>
+
+  <ng-template let-currentroduct  pTemplate="gridItem">
+    <div style="padding:.5em" class="ui-g-12 ui-md-3">
+        <app-product-item [product]="currentroduct"></app-product-item>
+  </div>
+</ng-template>
+</p-dataView>
+
+
+
+<ng-template #loading>
+      <p-progressSpinner [style]="{width: '50px', height: '50px'}" strokeWidth="10" fill="#EEEEEE" animationDuration=".9s"></p-progressSpinner>
+  </ng-template>
+
+
+
+<ng-container *ngIf="productList; else loading">
+
+    <div class="alert alert-info" [hidden]="(starters.length + mainCourses.length + desserts.length)  !== 0">
+      <h3>Aucun produit à afficher.</h3>
+    </div>
+
+
+    <div class="tags my-3">
+      <span class="badge badge-pill badge-info ml-2 cursor" (click)="selectChoice('start')">Entrée</span>
+      <span class="badge badge-pill badge-info ml-2 cursor" (click)="selectChoice('plat')">Plat</span>
+      <span class="badge badge-pill badge-info ml-2 cursor" (click)="selectChoice('dessert')">Dessert</span>
+      <span class="badge badge-pill badge-info ml-2 cursor" (click)="selectChoice('all')">Tout</span>
+    </div>
+
+<ng-container  *ngIf="(choice==='all' || choice==='start') && starters.length !=0 ">
+<h2 id="entree">Entrée ({{starters.length}})</h2>
+    <div class="card-deck">
+      <div class="col-sm-3" *ngFor="let currentProduct of starters; let i = index" >
+        <app-product-item [product]="currentProduct"></app-product-item>
+      </div>
+    </div>
+</ng-container>
+<ng-container   *ngIf="(choice==='all' || choice==='plat') && mainCourses.length !=0 ">
+<h2 id="plat">Plat  ({{mainCourses.length}})</h2>
+    <div class="card-deck">
+      <div class="col-sm-3" *ngFor="let currentProduct of mainCourses">
+        <app-product-item [product]="currentProduct"></app-product-item>
+      </div>
+    </div>
+</ng-container>
+<ng-container   *ngIf="(choice==='all' || choice==='dessert') && desserts.length">
+<h2>Dessert ({{desserts.length}})</h2>
+    <div class="card-deck">
+      <div class="col-sm-3" *ngFor="let currentProduct of desserts">
+        <app-product-item [product]="currentProduct"></app-product-item>
+      </div>
+    </div>
+</ng-container>

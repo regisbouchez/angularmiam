@@ -1,0 +1,47 @@
+
+<ng-template #loading>
+  <div class="alert alert-info" >
+  <h3>Chargemenent en cours ....</h3>
+  </div>
+</ng-template>
+
+
+<ng-container *ngIf="totalProducts!=undefined ; else loading">
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+
+      <h1>Panier</h1>
+      <button class="badge badge-pill badge-info ml-2 cursor" (click)="deleteCart()">Supprimer Panier</button>
+
+      <table class="table">
+        <tbody>
+          <tr *ngFor="let currentProduct of productInfo; let i =index;">
+
+            <td>  {{i+1}}  </td>
+            <td>{{currentProduct.product.name}}</td>
+            <app-product-buttons [product]="currentProduct.product" [numProducts]="currentProduct.quantity"></app-product-buttons>
+            <td> {{currentProduct.quantity * currentProduct.product.price | currency:'€':true }}</td>
+            <!-- <td><i class="far fa-minus-square fa-2x"></i>
+                &nbsp;
+                <i class="far fa-plus-square fa-2x"></i></td> -->
+            <!-- <td> {{currentProduct.quantity}} </td> -->
+          </tr>
+
+        </tbody>
+        <tfoot>
+          <tr>
+            <th></th>
+            <th></th>
+            <th>Total : {{getTotalProducts()}} </th>
+            <th scope="col">{{getTotalAmout() | currency:'€':true }}</th>
+          </tr>
+        </tfoot>
+      </table>
+
+      <button type="button" class="btn btn-primary btn-lg btn-block">
+        Valider le panier
+      </button>
+
+    </div>
+  </div>
+</ng-container>

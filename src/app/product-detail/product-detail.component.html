@@ -1,0 +1,21 @@
+<ng-template #loading>
+    <div class="alert alert-info" >
+    <h3>Chargemenent en cours ....</h3>
+    </div>
+  </ng-template>
+
+<ng-container *ngIf="currentProduct; else loading">
+
+<div class="shadow-lg p-3 mb-5 bg-white rounded"   >
+    <img  [src]="currentProduct.photo" class="card-img-top">
+    <h2>{{ currentProduct.name }}</h2>
+    <div class="tags my-3">
+      <span class="badge badge-pill badge-info ml-2" *ngFor="let tag of currentProduct.tags">{{ tag.name }}</span>
+    </div>
+    <p class="lead">{{ currentProduct.description }}</p>
+    <p class="lead">{{ currentProduct.type }}</p>
+    <p class="lead"> <b>{{ currentProduct.price | currency:'€':true}}</b> </p>
+    <p class="lead">{{ currentProduct.tags[1].name }}</p>
+    <p class="lead">Nutriscore {{ currentProduct.nutritionalInformations.nutriscore }}</p>
+</div>
+</ng-container>

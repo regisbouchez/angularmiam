@@ -1,0 +1,11 @@
+button {
+    color: #ff7000;
+    font-size: 30px;
+  }
+  .buttons{
+    font-size: 30px
+  }
+
+  .number.offset {
+    margin-left: 62px;
+  }
